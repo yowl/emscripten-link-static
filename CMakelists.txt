@@ -1,0 +1,17 @@
+ 
+ cmake_minimum_required(VERSION 3.26)
+
+ project(lib1 C)
+
+# add_library(extlib STATIC IMPORTED)
+# set_property(TARGET extlib PROPERTY IMPORTED_LOCATION C:/github/extlib/extlib.a) 
+
+ add_library(lib1 STATIC bfunc.c)
+# target_link_libraries(lib1 extlib)
+
+ add_custom_command(TARGET lib1
+                    POST_BUILD 
+                   COMMAND ${CMAKE_AR} qL liblib1.a C:/github/extlib/extlib.a
+)
+
+ install (TARGETS lib1 DESTINATION libs COMPONENT libs)
